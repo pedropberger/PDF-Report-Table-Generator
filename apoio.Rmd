@@ -1,0 +1,110 @@
+---
+title: "Relatório do Núcleo de Apoio às Vítimas de Violência (NAVV)"
+author: "Ministério Público do Estado do Espírito Santo"
+date: "Subprocuradoria–Geral de Justiça Institucional"
+output:
+  pdf_document: default
+  word_document: default
+  html_document: default
+header-includes:
+  - \usepackage{titling}
+  - \pretitle{\begin{center}\vspace*{-3cm}
+    \includegraphics[width=2in,height=2in]{Logo-MPES.png}\vspace{1cm}\LARGE\\}
+  - \posttitle{\end{center}}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(dplyr)
+library(flextable)
+library(htmltools)
+library(readxl)
+
+use_df_printer()
+
+
+```
+
+```{r packages, include=FALSE}
+
+
+
+
+```
+
+## Relatório
+
+Trata-se de relatório elaborado para atender à solicitação de dados estatísticos de crimes do Núcleo de Apoio às Vítimas de Violência (NAVV), conforme procedimento SEI nº 19.11.0148.0018625/2023-62.
+
+Por meio do Ofício, foi requisitada a disponibilização de "dados extraídos do Sistema Gampes, abrangendo todas as promotorias criminais das comarcas do estado do Espírito Santo, referentes a crimes previstos no Código Penal Brasileiro, sejam tentados ou consumados, ocorridos de janeiro a maio deste ano". Para atender a essa solicitação, os dados foram filtrados com base na taxonomia de assuntos do Auto, de acordo com o Sistema de Gestão de Tabelas Processuais Unificadas (https://sgt.cnmp.mp.br), relacionados aos crimes listados pelo NAVV.
+
+Os assuntos selecionados foram os seguintes:
+
+Os assuntos selecionados foram:
+
+- DIREITO PENAL >> Crimes contra a Dignidade Sexual >> Estupro de vulnerável
+- DIREITO DA CRIANÇA E DO ADOLESCENTE >> Ato Infracional >> Contra a dignidade sexual >> Estupro de Vulnerável
+- DIREITO PENAL >> Crimes contra o Patrimônio >> Extorsão 
+- DIREITO PENAL >> Crimes contra a vida >> Homicídio Qualificado
+- DIREITO PENAL >> Crimes contra a vida >> Homicídio Privilegiado
+- DIREITO PENAL >> Crimes contra a Dignidade Sexual >> Estupro 
+- DIREITO PENAL >> Crimes contra o Patrimônio >> Extorsão mediante seqüestro 
+- DIREITO PENAL >> Crimes contra o Patrimônio >> Roubo Majorado
+- DIREITO PENAL >> Crimes Previstos na Legislação Extravagante >> Crimes Militares >> Homicídio >> Homicídio qualificado
+- DIREITO PENAL >> Crimes contra a vida >> Homicídio Simples
+- DIREITO PENAL >> Crimes Previstos na Legislação Extravagante >> Crimes Militares >> Homicídio >> Homicídio simples
+- DIREITO PENAL >> Crimes contra o Patrimônio >> Roubo 
+
+\newpage
+
+## Autos movimentados
+
+Refere-se ao número de autos com 1 (um) ou mais movimentos registrados nas comarcas do estado do Espírito Santo durante o período de janeiro a maio de 2023, categorizado por comarca e assunto.
+
+
+
+```{r tabela, results='asis', echo=FALSE}
+
+
+#library(htmltools)
+
+NAVV <- read_excel("data/NAVV.xlsx")
+
+df<-NAVV
+
+categorias <- unique(df$Assunto_Gampes)
+
+
+# Lista para armazenar as tabelas flexíveis
+ft_list <- list()
+
+
+# Loop para cada categoria
+for (categoria in categorias) {
+  # Filtrando o dataframe para a categoria atual e selecionando apenas as colunas desejadas
+  df_filtrado <- df %>%
+    filter(Assunto_Gampes == categoria) %>%
+    select(Orgao, Autos_Movimentados)
+  
+  # Criando a tabela flexível
+  ft <- flextable(df_filtrado) %>% 
+    autofit()
+  
+  # Convertendo a tabela flexível para markdown usando kable
+  table_markdown <- knitr::kable(df_filtrado, format = "markdown")
+  
+  # Imprimindo a tabela markdown
+  cat("**",categoria,"**\n", sep="")
+
+  print(table_markdown)
+  cat("\n")  # Pula uma linha entre as tabelas
+}
+
+
+
+```
+
+## Análise gráfica
+
+Gráficos serão inseridos aqui

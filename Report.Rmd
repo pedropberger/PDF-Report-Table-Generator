@@ -1,0 +1,94 @@
+---
+title: "Relatório de Dados Quantitativos de Atuação"
+author: "Ministério Público do Estado do Espírito Santo"
+date: "Assessoria de Gestão Estratégica"
+output:
+  pdf_document: default
+  word_document: default
+  html_document: default
+header-includes:
+  - \usepackage{titling}
+  - \pretitle{\begin{center}\vspace*{-3cm}
+    \includegraphics[width=2in,height=2in]{Logo-MPES.png}\vspace{1cm}\LARGE\\}
+  - \posttitle{\end{center}}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(dplyr)
+library(flextable)
+library(htmltools)
+library(readxl)
+
+use_df_printer()
+
+
+```
+
+```{r packages, include=FALSE}
+
+
+
+
+```
+
+## Relatório
+
+Os dados apresentados abaixo representam o quantitativo de autos movimentados por comarca. São contabilizados todos procedimentos aos quais o promotor de Justiça realizou ao menos uma atividade. O conceito de atividade considerado no levantamento são as movimentações no sistema GAMPES oriundas de movimentos finalísticos, correspondentes aos considerados no painel "Atividade-fim", para evitar duplicidade na contagem.
+
+
+\newpage
+
+
+
+```{r tabela, results='asis', echo=FALSE}
+
+
+#library(htmltools)
+
+autos <- read_excel("data/Autos Movimentados por Cargo.xlsx")
+
+df<-autos
+
+df <- df %>%
+    arrange(Comarca)
+
+
+categorias <- unique(df$Comarca)
+
+
+# Lista para armazenar as tabelas flexíveis
+ft_list <- list()
+
+
+# Loop para cada categoria
+for (categoria in categorias) {
+  # Filtrando o dataframe para a categoria atual e selecionando apenas as colunas desejadas
+  df_filtrado <- df %>%
+    filter(Comarca == categoria) %>%
+    select(Funcao, autos_movimentados)
+  
+    # Classificando as linhas por "Assunto_Gampes" em ordem alfabética
+  df_filtrado <- df_filtrado %>%
+    arrange(desc(autos_movimentados))
+
+  
+  # Criando a tabela flexível
+  ft <- flextable(df_filtrado) %>% 
+    autofit()
+  
+  # Convertendo a tabela flexível para markdown usando kable
+  table_markdown <- knitr::kable(df_filtrado, format = "markdown")
+  
+  # Imprimindo a tabela markdown
+  cat("**",categoria,"**\n", sep="")
+
+  print(table_markdown)
+  cat("\n")  # Pula uma linha entre as tabelas
+}
+
+
+
+```
+
