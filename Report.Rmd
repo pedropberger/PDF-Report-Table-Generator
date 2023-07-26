@@ -1,5 +1,5 @@
 ---
-title: "Relatório de Dados Quantitativos de Atuação"
+title: "Dados Quantitativos de Atuação Finalística"
 author: "Ministério Público do Estado do Espírito Santo"
 date: "Assessoria de Gestão Estratégica"
 output:
@@ -35,7 +35,16 @@ use_df_printer()
 
 ## Relatório
 
-Os dados apresentados abaixo representam o quantitativo de autos movimentados por comarca. São contabilizados todos procedimentos aos quais o promotor de Justiça realizou ao menos uma atividade. O conceito de atividade considerado no levantamento são as movimentações no sistema GAMPES oriundas de movimentos finalísticos, correspondentes aos considerados no painel "Atividade-fim", para evitar duplicidade na contagem.
+Trata-se de levantamento de dados de atuação finalística por órgão e função, realizado pela Unidade de Inovação e Sustentabilidade (UIS) do Ministério Público do Estado do Espírito Santo (MPES).
+
+O objetivo primordial desse relatório é apresentar uma análise precisa e detalhada do desempenho do MPES em relação ao quantitavido de procedimentos movimentados que contribuem para a consecução dos objetivos institucionais.
+
+Para a realização desse estudo, foram empregados dados taxonômicos de movimentação (conforme Sistema de Gestão de Tabelas Processuais Unificadas - SGT) obtidos por meio do Sistema GAMPES. A fim de garantir a precisão e a pertinência dos resultados, somente foram considerados movimentos que estivessem em consonância com o Painel Área-Fim: painel especialmente concebido para selecionar, exclusivamente, os movimentos processuais lançados com fins finalísticos de atuação, não considerando parte dos movimentos relacionados à área-meio e/ou de natureza administrativa, comumente registrados por secretarias e cartórios.
+
+O quantitativo apresentado na coluna “autos movimentados” se refere a quantidade de autos em que foram lançados ao menos 1 (um) movimento finalístico segundo os critérios do Painel Área-Fim. As comarcas e funções apresentadas tratam-se de todas unidades mapeadas do MPES e funções atribuídas, respectivamente, no Sistema GAMPES.
+
+Não foram aplicados filtros relacionados ao tipo de procedimento (extrajudicial, judicial e administrativo). São contabilizados nesse relatório todos movimentos lançados no GAMPES entre o dia 1º de janeiro e 31 de dezembro de 2022, com exceção aos cuja taxonomia não está presente no painel Área-fim, listados no ANEXO 1. Caso o procedimento tenha tramitado em uma comarca, porém apenas com movimentação de natureza administrativa (marco entrada, juntada, etc), o mesmo não é contabilizado no período, da mesma forma que não é contabilizado no painel Área-fim.
+
 
 
 \newpage
@@ -47,7 +56,9 @@ Os dados apresentados abaixo representam o quantitativo de autos movimentados po
 
 #library(htmltools)
 
-autos <- read_excel("data/Autos Movimentados por Cargo.xlsx")
+#autos <- read_excel("data/Autos Movimentados por Cargo.xlsx") #busca tb movimentos de secretaria e cartório
+
+autos <- read_excel("data/Autos Movimentados por Cargo IsMembro.xlsx") #filtra apenas lançados por membro
 
 df<-autos
 
@@ -91,4 +102,131 @@ for (categoria in categorias) {
 
 
 ```
+
+
+\newpage
+
+# ANEXO 1
+
+Lista de Movimentos Taxonômicos do GAMPES **não** considerados no levantamento acima:
+
+-  Atendimento ao Público
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Acompanhamento da Execução de Contrato >> Fiscalização Contratual
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Acompanhamento da Execução de Contrato >> Fiscalização Técnica
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Adjudicação de Licitação
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Apresentação de Fatura de Despesa
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Arquivamento 
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Ata de Registro de Preço
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Atendimento >> Conflito de Atribuições
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Atendimento >> Recurso Administrativo
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Ato Normativo >> Enunciado / Súmula
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Ato Normativo >> Instrução Normativa
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Ato Normativo >> Ordem / Instrução de Serviço
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Ato Normativo >> Portaria
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Ato Normativo >> Provimento
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Ato Normativo >> Resolução
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Ciência de Decisão Administrativa
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Citação
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Comunicação
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Comunicação Interna 
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Contrarazões / contraminuta 
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Correição/Inspeção
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Decisão Administrativa >> Aplicação de penalidade
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Decisão Administrativa >> Declaração de Incompetência para a Decisão
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Decisão Administrativa >> Decretação de revelia
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Decisão Administrativa >> Deferido/Concedido/Procedente/Autorizado
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Decisão Administrativa >> Indeferido/Prejudicado/Improcedente/Não autorizado
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Decisão Administrativa >> Nomeação de defensor dativo
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Decisão Administrativa >> Parcialmente Deferido/Concedido/Procedente/Autorizado
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Decisão de vitaliciamento
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Decretação de Sigilo >> Grau de Sigilo Reservado
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Decretação de Sigilo >> Grau de Sigilo Ultrasecreto
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Decretação de Sigilo >> Informação Pessoal
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Defesa prévia / Resposta preliminar
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Deliberação Administrativa em Órgão Colegiado >> Deferido/Concedido/Procedente/Autorizado
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Deliberação Administrativa em Órgão Colegiado >> Indeferido/Prejudicado/Improcedente/ Nâo Autorizado
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Deliberação Administrativa em Órgão Colegiado >> Parcialmente Deferido/Procedente
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Elaboração de Minuta
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Empenho de Despesa >> Ordinário
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Exame de Especificações
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Expedição de recomendações/orientações gerais aos membros
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Formalização / Celebração de Acordo >> Contrato
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Formalização / Celebração de Acordo >> Convênio, Termo de Cooperação
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Formalização / Celebração de Acordo >> Prorrogação de Convênio
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Formalização / Celebração de Acordo >> Termo Aditivo
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Formalização / Celebração de Acordo >> Termo de Ajuste de Contas/ Termo de Reconhecimento de Dívida
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Habilitação em Licitação
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Homologação
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Impugnação ao Edital
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Impugnação de estágio probatório
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Instauração de Procedimento
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Interrogatório
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Intimação
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Juntada de documentos para contratação >> Atestado de capacidade técnica
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Juntada de documentos para contratação >> Certidão negativa/positiva da Fazenda Estadual
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Juntada de documentos para contratação >> Certidão negativa/positiva da Fazenda Federal
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Juntada de documentos para contratação >> Certidão negativa/positiva da Fazenda Municipal
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Juntada de documentos para contratação >> Certidão negativa/positiva de débitos trabalhistas
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Juntada de documentos para contratação >> Certificado de regularidade do FGTS
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Juntada de documentos para contratação >> Contrato social
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Juntada de documentos para contratação >> Declaração antinepotismo
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Laudo de avaliação psiquiátrica/psicológica
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Lista de convidados
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Manifestação do Cidadão
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Manifestação do Servidor
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Prestação de Contas
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Projeto Básico / Termo de Referência
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Publicação Oficial
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Ratificação
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Recebimento de Material
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Recebimento/avaliação de propostas
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Recurso Administrativo
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Registro de Reunião
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Registro Funcional
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Relatório conclusivo disciplinar
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Relatório de correição ou inspeção
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Relatório de Estágio Probatório >> Conclusivo
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Relatório de Estágio Probatório >> Periódico
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Remessa de Material
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Requerimento / Solicitação
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Súmula de acusação
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Termo de Responsabilidade
+-  ATOS ADMINISTRATIVOS (ÁREA-MEIO) >> Visita de orientação
+-  ATOS COMUNS >> Acondicionamento Físico
+-  ATOS COMUNS >> Anexação
+-  ATOS COMUNS >> Apensamento
+-  ATOS COMUNS >> Autuação
+-  ATOS COMUNS >> Desacondicionamento Físico
+-  ATOS COMUNS >> Desanexação
+-  ATOS COMUNS >> Desapensamento
+-  ATOS COMUNS >> Desentranhamento
+-  ATOS COMUNS >> Desmembramento
+-  ATOS COMUNS >> Distribuição >> Gestor
+-  ATOS COMUNS >> Distribuição >> Membro
+-  ATOS COMUNS >> Eliminação
+-  ATOS COMUNS >> Encaminhamento a Órgão Externo
+-  ATOS COMUNS >> Encaminhamento a Órgão Interno
+-  ATOS COMUNS >> Juntada
+-  ATOS COMUNS >> Ouvidoria >> Análise da Demanda
+-  ATOS COMUNS >> Ouvidoria >> Orientação ao Cidadão
+-  ATOS COMUNS >> Ouvidoria >> Triagem
+-  ATOS COMUNS >> Redistribuição
+-  Gestores do Ministério Público>> Análise jurídica da despesa
+-  Marco Entrada
+-  Membro do ministério público >> Audiência designada
+-  Membro do ministério público >> Expedição >> Óficio
+-  Membro do ministério público >> Juntada >> Documentos
+-  Membro do ministério público >> Orientação >> Verbal
+-  Membro do ministério público >> Parecer
+-  Membro do ministério público >> Resposta à consulta
+-  Ouvidoria >> Denúncia
+-  Ouvidoria >> Solicitação de Informações ou Providência
+-  Participação em Grupo de Trabalho/Comissões
+-  Representação Institucional em >> Evento
+-  Representação Institucional em >> Órgão Colegiado
+-  Representação Institucional em >> Palestra como Palestrante/Debatedor
+-  Representação Institucional em >> Projeto
+-  Reunião
+
+
 
