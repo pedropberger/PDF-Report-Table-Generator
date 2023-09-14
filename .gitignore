@@ -6,3 +6,4 @@
 *.pdf
 *.db
 data/
+secrets.R
