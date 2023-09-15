@@ -31,7 +31,6 @@ consulta_sql <- "/* Consulta que será utilizada para o relatório a partir de j
 )
 "
 
-
 # Execute a consulta
 resultados <- dbGetQuery(con, consulta_sql)
 
